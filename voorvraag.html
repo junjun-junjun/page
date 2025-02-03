@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanning!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-background {
+            background: rgb(204, 255, 65);
+            background: linear-gradient(180deg, rgb(187, 255, 0) 0%, rgb(238, 255, 127) 36%, rgb(245, 255, 153) 100%);
+        }
+
+        .bounce2 {
+            animation: bounce2 1s ease infinite;
+        }
+
+        @keyframes bounce2 {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="gradient-background">
+    <div class="flex items-center justify-center h-screen">
+        <div class="flex flex-col items-center p-20 bg-pink-500 rounded-md">
+            <h2 id="text-under" class="text-[72px] text-white font-bold fade-in">
+            </h2>
+        </div>
+    </div>
+
+    <script type="module">
+        const textUnder = document.getElementById('text-under');
+        const msg = [
+            "Hey Mariaaa",
+            "Volgende week is een speciale dag!",
+            "Het is namelijk bijna...",
+            "Valentijnsdag!",
+            "En ik weet dat het een beetje laat is...",
+            "Maar ik vroeg mij af..",
+        ]
+
+        var index = 0;
+        carousel()
+
+        function carousel() {
+            if (index >= msg.length) {
+                window.location.replace("vraag.html");
+                return;
+                // index = 0;
+            }
+            textUnder.classList.remove("fade-in");
+            void textUnder.offsetWidth; // Force reflow to restart animation
+            textUnder.innerText = msg[index];
+            textUnder.classList.add("fade-in");
+
+
+            index++;
+            setTimeout(carousel, 3000)
+        }
+
+    </script>
+</body>
+
+</html>

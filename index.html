@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey :3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-background {
+            background: rgb(173, 66, 114);
+            background: linear-gradient(180deg, rgb(187, 108, 199) 0%, rgb(192, 83, 192) 36%, rgb(255, 202, 245) 100%);
+        }
+
+        .bounce2 {
+            animation: bounce2 1s ease infinite;
+        }
+
+        @keyframes bounce2 {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body class="gradient-background">
+    <div class="flex items-center justify-center h-screen">
+        <div class="flex flex-col items-center p-4">
+            <img id="imageDisplay" alt="Als je dit ziet ga ik huilen :C" class="rounded-md h-[550px]"
+                style="object-fit: cover;" />
+            <h2 id="text-under" class="text-5xl font-bold text-[#bd1e59] my-4">💖💖💖💖💖
+            </h2>
+            <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
+                <button id="nextButton"
+                    class="bounce2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-[25px] font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-pink-500 min-h-12 min-w-[75px] px-4 py-2 bg-pink-700 text-white transition">
+                    Klik hier om verder te gaan hihi 💖
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+        const nextButton = document.getElementById('nextButton');
+        const imageDisplay = document.getElementById('imageDisplay');
+        const textUnder = document.getElementById('text-under');
+        const responseButton = document.getElementById('responseButton');
+
+        let buttonHeight = 48; // Starting height in pixels
+        let buttonWidth = 80;
+        let fontSize = 20; // Starting font size in pixels
+        const photos = {
+            "./fotos/cutiesintrein.jpg": "Samen in de trein :D",
+            "./fotos/ikcutie.jpg": "Lachennn 😄",
+            "./fotos/kleintoetje.jpg": "Altijd kleine toetjes samen 🙈",
+            "./fotos/mariacutie.jpg": "Jij bent een schatje 💖",
+            "./fotos/nijntje.jpg": "Jij en lief klein konijntje 🐈‍⬛🐇",
+            "./fotos/nogcutieintrein.jpg": "Samen gekkies zijn",
+            "./fotos/oddy.JPG": "ODDYYYY 😻😻😻",
+            "./fotos/witterozen.jpg": "Voor altijd bloemen geven 💐💐💐"
+        }
+
+
+        nextButton.onclick = function () {
+            window.location.href = "voorvraag.html"
+        };
+
+        var index = 0;
+        carousel()
+
+        function carousel() {
+            index++;
+            if (index >= Object.entries(photos).length) {
+                index = 0;
+            }
+            imageDisplay.src = Object.keys(photos)[index];
+            textUnder.innerHTML = Object.values(photos)[index];
+            setTimeout(carousel, 2000);
+        }
+    </script>
+</body>
+
+</html>
